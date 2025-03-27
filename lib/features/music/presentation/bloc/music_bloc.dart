@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 import 'package:tapinvest/core/errors/server_error.dart';
 import 'package:tapinvest/core/utils/error_const.dart';
 import 'package:tapinvest/features/music/data/model/entry_model.dart';
@@ -10,7 +9,6 @@ part 'music_bloc.freezed.dart';
 part 'music_event.dart';
 part 'music_state.dart';
 
-@injectable
 class MusicBloc extends Bloc<MusicEvent, MusicState> {
   final MusicRepository musicRepository;
   MusicBloc({required this.musicRepository}) : super(const MusicInitial()) {

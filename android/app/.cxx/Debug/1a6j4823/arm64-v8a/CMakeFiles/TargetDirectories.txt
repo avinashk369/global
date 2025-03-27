@@ -1,0 +1,2 @@
+/Users/avinash/freelancing/flutter/tapinvest/android/app/.cxx/Debug/1a6j4823/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/avinash/freelancing/flutter/tapinvest/android/app/.cxx/Debug/1a6j4823/arm64-v8a/CMakeFiles/rebuild_cache.dir

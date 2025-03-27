@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/avinash/developer/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/avinash/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/avinash/freelancing/flutter/tapinvest/android/app/.cxx/Debug/1a6j4823/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/avinash/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/avinash/freelancing/flutter/tapinvest/android/app/.cxx/Debug/1a6j4823/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

@@ -7,9 +7,11 @@ import 'package:tapinvest/features/music/presentation/bloc/music_bloc.dart';
 import 'package:tapinvest/routes/route_const.dart';
 import 'package:tapinvest/routes/route_generator.dart';
 import 'package:tapinvest/services/dio_client.dart';
+import 'package:tapinvest/services/hive_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await HiveService().init();
   final DioClient dioClient = DioClient();
   runApp(MyApp(dioClient: dioClient));
 }

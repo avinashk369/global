@@ -5,12 +5,15 @@ import 'package:tapinvest/core/utils/error_const.dart';
 import 'package:tapinvest/features/music/data/model/entry_model.dart';
 import 'package:tapinvest/features/music/data/model/music_model.dart';
 import 'package:tapinvest/features/music/domain/repositories/music_repository.dart';
+import 'package:tapinvest/services/hive_service.dart';
 part 'music_bloc.freezed.dart';
 part 'music_event.dart';
 part 'music_state.dart';
 
 class MusicBloc extends Bloc<MusicEvent, MusicState> {
   final MusicRepository musicRepository;
+  final storage = HiveService();
+
   MusicBloc({required this.musicRepository}) : super(const MusicInitial()) {
     on<MusicEvent>((event, emit) async {
       await event.map(
@@ -88,14 +91,23 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
   /// load music
   Future<void> _loadMusic(LoadMusic evnet, Emitter<MusicState> emit) async {
     try {
-      emit(MusicLoading());
+      Map<String, dynamic>? savedData = storage.getJson('music');
+      if (savedData == null) {
+        emit(MusicLoading());
 
-      /// call the repo function to load the bonds
-      final MusicModel musicModel = await musicRepository.getMusics();
+        /// call the repo function to load the bonds
+        final MusicModel musicModel = await musicRepository.getMusics();
 
-      /// emit bonds loaded state with data
+        /// save to local storage
+        storage.saveJson('music', musicModel.toJson());
 
-      emit(MusicLoaded(music: musicModel, entryModels: []));
+        /// emit bonds loaded state with data
+
+        emit(MusicLoaded(music: musicModel, entryModels: []));
+      } else {
+        MusicModel musicModel = MusicModel.fromJson(savedData);
+        emit(MusicLoaded(music: musicModel, entryModels: []));
+      }
     } on ServerError catch (error) {
       emit(MusicError(error: error.errorMessage));
     } catch (e) {
